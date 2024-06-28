@@ -38,34 +38,42 @@ if __name__ == '__main__':
         )
 
         db.session.add_all([u1, u2])
+        db.session.commit()
 
+        print("Creating Post...")
         u1posts = Post(
             content = "this is my first post",
-            user_id = u1,
+            user_id = u1.id,
             language_used = "React"
         )
 
         u2posts = Post(
             content = "this is my second post",
-            user_id = u2,
+            user_id = u2.id,
             language_used = "Python"
         )
         
         db.session.add_all([u1posts, u2posts])
+        db.session.commit()
 
+        print("Creating Projects...")
         u1projects = Project(
             name = "my first project",
             description = "using react naive and flask sql i built my first full stack dev application",
             link = "https://github.com/NandoD95/PenPrez",
-            user_id = u1
+            user_id = u1.id
         )
 
         db.session.add_all([u1projects])
+        db.session.commit()
 
+        print("Creating Favorites...")
         u2fav = Favorite(
-            project_id = u1projects,
-            user_id = u2
+            project_id = u1projects.id,
+            user_id = u2.id
         )
 
         db.session.add_all([])
         db.session.commit()
+
+        print("Seed Created Successfully...")
