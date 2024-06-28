@@ -18,8 +18,8 @@ class Post(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    language_used = db.Column(db.String(120) nullable=True)
-    created_at = db.Column(db.DateTime, server_default=func.now())
+    language_used = db.Column(db.String(120), nullable=True)
+    # created_at = db.Column(db.DateTime, server_default=func.now())
 
     users = db.relationship('User', back_populates='posts')
     serialize_rules = ('-users.post')
