@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from "./pages/Login";
 import Redirect from "./Redirect";
+import SignUp from "./pages/SignUp"
+import User from "./pages/User"
 
 function App() {
 
@@ -33,6 +35,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Redirect isLoggedIn={isLoggedIn} userId={userId} />} />
         <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId}/>}></Route>
+        <Route path='/signup' element={<SignUp setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
+        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} setUserId={setUserId} />} />
       </Routes>
     </BrowserRouter>
   );
