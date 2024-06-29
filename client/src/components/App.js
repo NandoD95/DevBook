@@ -9,7 +9,7 @@ function App() {
   const [userId, setUserId] = useState(0)
 
   useEffect(() => {
-    fetch('/api/session')
+    fetch('/session')
       .then(response => {
         if (response.ok) {
           setIsLoggedIn(true);

@@ -10,7 +10,7 @@ function Login({ setIsLoggedIn, setUserId }) {
 
     function logIn(e) {
         e.preventDefault()
-        fetch('/api/login', {
+        fetch('/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
