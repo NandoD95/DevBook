@@ -25,6 +25,45 @@ class Users(Resource):
     
 api.add_resource(Users, '/users')
 
+class UserById(Resource):
+    def get(self, id):
+        user = User.query.filter_by(id=id).one_or_none()
+
+        if user is not None:
+            return make_response(user.to_dict(), 200)
+        else:
+            return make_response({"error": "User not found"}, 404)
+
+    def delete(self, id):
+        user = User.query.filter_by(id=id).one_or_none()
+
+        if user is None:
+            return make_response({"error": "User not found"}, 404)
+
+        db.session.delete(user)
+        db.session.commit()
+        return make_response({}, 204)
+    
+    def patch(self, id):
+        user = User.query.filter_by(id=id).one_or_none()
+
+        if user is None:
+            return make_response({"error": "User not found"}, 404)
+        
+        data = request.get_json()
+        if 'username' in data:
+            user.username = data['username']
+        if 'email' in data:
+            user.email = data['email']
+        if 'password' in data:
+            user.password = data['password']
+        
+        db.session.commit()
+        return make_response(user.to_dict(), 200)
+
+
+api.add_resource(UserById, "/user/<int:id>")
+
 class CheckSession(Resource):
     def get(self):
         user_id = session.get('user_id')
@@ -79,6 +118,63 @@ class Logout(Resource):
         return make_response({}, 204)
 
 api.add_resource(Logout, '/logout')
+
+class Interactions(Resource):
+    def post(self):
+        try:
+            newInteraction = Interaction(
+                comment=request.get_json()["comment"],
+                like=request.get_json()["like"],
+                user_id=request.get_json()["user_id"],
+                post_id=request.get_json()["post_id"],
+            )
+            db.session.add(newInteraction)
+            db.session.commit()
+
+            return make_response(newInteraction.to_dict(), 201)
+        except ValueError:
+            return make_response({"errors": ["validation errors"]}, 400)
+
+    def get(self):
+        interaction = Interaction.query.get()
+        if interaction:
+            return make_response(interaction.to_dict(), 200)
+        else:
+            return make_response({"error": "Interaction not found"}, 404)
+
+api.add_resource(Interactions, "/interactions")
+
+class InteractionByID(Resource):
+    def get(self, id):
+        interaction = Interaction.query.get(id)
+        if interaction:
+            return make_response(interaction.to_dict(), 200)
+        else:
+            return make_response({"error": "Interaction not found"}, 404)
+
+    def patch(self, id):
+        interaction = Interaction.query.get(id)
+        data = request.get_json()
+        if interaction:
+            try:
+                # Update the interaction properties
+                if "comment" in data:
+                    interaction.comment = data["comment"]
+                if "like" in data:
+                    interaction.like = data["like"]
+                if "user_id" in data:
+                    interaction.user_id = data["user_id"]
+                if "post_id" in data:
+                    interaction.post_id = data["post_id"]
+
+                db.session.commit()
+                return make_response(interaction.to_dict(), 200)
+            except ValueError:
+                return make_response({"errors": ["validation errors"]}, 400)
+        else:
+            return make_response({"error": "Interaction not found"}, 404)
+
+api.add_resource(InteractionByID, "/interactions/<int:id>")
 
 
 if __name__ == '__main__':
