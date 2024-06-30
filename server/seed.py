@@ -28,13 +28,13 @@ if __name__ == '__main__':
             name = "John Smith",
             email = "john123@aol.com",
             username = "john.s",
-            password = "password"
+            _password_hash = "password"
         )
         u2 = User(
             name = "Jane Doe",
             email = "jane123@aol.com",
             username = "jane.d",
-            password = "password"
+            _password_hash = "password"
         )
 
         db.session.add_all([u1, u2])
@@ -73,7 +73,7 @@ if __name__ == '__main__':
             user_id = u2.id
         )
 
-        db.session.add_all([])
+        db.session.add_all([u2fav])
         db.session.commit()
 
         print("Seed Created Successfully...")
