@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Post from "../Post"
+import Search from "../Search"
+import PostForm from "../PostForm"
 
 function User({ setIsLoggedIn, userId, setUserId }) {
 
@@ -50,7 +52,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
         <>
             <div className="">
                 <h1 className="">DevBook</h1>
-                {/* <Search otherUser={otherUser}/> */}
+                <Search otherUser={otherUser}/>
                 <button className="" onClick={() => handleLogOut()}>Logout</button>
             </div>
            {/* <PostForm setNewPost={setNewPost} />  */}
