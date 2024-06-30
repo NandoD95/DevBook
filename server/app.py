@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -62,7 +62,7 @@ class UserById(Resource):
         return make_response(user.to_dict(), 200)
 
 
-api.add_resource(UserById, "/user/<int:id>")
+api.add_resource(UserById, "/users/<int:id>")
 
 class CheckSession(Resource):
     def get(self):

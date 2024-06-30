@@ -65,7 +65,15 @@ class Post(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=func.now())
 
     user = db.relationship('User', back_populates='posts')
-    serialize_rules = ('-users.posts')
+    serialize_rules = ('-user.posts')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'content': self.content
+            # Add more attributes as needed
+        }
 
     @validates('content')
     def validate_content(self, key, content):
@@ -95,7 +103,25 @@ class Project(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates='projects')
     favorites = db.relationship('Favorite', back_populates='projects')
-    serialize_rules = ('-users.projects')
+    serialize_rules = ('-user.projects')
+
+    # Example of accessing projects related to a user:
+    # user = User.query.get(user_id)  # Assuming user_id is known
+    # if user:
+    #     projects = user.projects  # Accessing projects related to this user
+        # for project in projects:
+        #     print(project.name)  # Example of accessing project attributes
+        # else:
+        #     print("User not found")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'user_id': self.user_id
+            # Add more attributes as needed
+        }
 
     @validates
     def validate_name(self, key, name):

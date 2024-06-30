@@ -21,7 +21,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
             .then(r => r.json())
             .then(users => {
                 const filteredUsers = users.filter(user => user.id !== userId)
-                const currentUser = users.filter(user => user.id == userId)
+                const currentUser = users.filter(user => user.id === userId)
                 currentUser.map(user => {
                     setUserData(user)
                 })
@@ -39,7 +39,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
     }
 
     const post = posts?.filter((post) => {
-        return (post.id == userData.id)
+        return (post.id === userData.id)
     })
 
     const postCard = post.map((post) => {
