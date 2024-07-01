@@ -17,22 +17,14 @@ function SignUp({ setIsLoggedIn, setUserId }) {
     const [incorrectPassword, setIncorrectPassword] = useState(true)
 
     function createdNewUser(e) {
-        e.preventDefault()
-        if (userPassword === checkPassword && userPassword.length >= 8) {
-            setIncorrectPassword(true)
+        // e.preventDefault()
+        // console.log(e)
             fetch('/signup', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(
-                    {
-                        fullName: fullName,
-                        username: userName,
-                        email: userEmail,
-                        password: userPassword
-                    }
-                )
+                body: JSON.stringify(e)
             })
                 .then(r => {
                     if (r.ok) {
@@ -43,14 +35,15 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                         return undefined
                     }
                 })
-                .then(data => {
+                .then(data => { 
+                    // console.log(data)
                     const userId = data.id
                     setUserId(userId)
-                    setFullName("")
-                    setUserName("")
-                    setUserEmail("")
-                    setUserPassword("")
-                    setCheckPassword("")
+                    // setFullName("")
+                    // setUserName("")
+                    // setUserEmail("")
+                    // setUserPassword("")
+                    // setCheckPassword("")
                     navigate(`/user/${userId}`)
                     setIsLoggedIn(true)
                 })
@@ -58,10 +51,6 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                     alert("Something went wrong. Please try again.")
                     console.error('Login failed:', error)
                 })
-        }
-        else {
-            setIncorrectPassword(false)
-        }
     }
 
     let createUserSchema = yup.object().shape({
@@ -124,11 +113,11 @@ function SignUp({ setIsLoggedIn, setUserId }) {
             <h1 className="">DevBook</h1>
             <Formik
                 initialValues={{
-                    fullname: '',
+                    name: '',
                     username: '',
                     email: '',
                     password: '',
-                    verifyPassword: ''
+                    password_confirmation: ''
                 }}
                 validationSchema={createUserSchema}
                 onSubmit={createdNewUser}
@@ -178,13 +167,13 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                         {/* {error ? <p className="signupEditErrorMessage">{error.error}</p> : ""} */}
 
                         <button type="submit">Sign Up</button>
-                        <div>
-                            <p>Already have an account? <Link to="/login">Log In</Link></p>
-                        </div>
 
                     </form>)
                 }}
             </Formik>
+            <div>
+                <p>Already have an account? <Link to="/login">Log In</Link></p>
+            </div>
 
         </div>
 

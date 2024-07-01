@@ -10,19 +10,15 @@ function Login({ setIsLoggedIn, setUserId }) {
 
     const navigate = useNavigate()
 
-    function logIn(e) {
-        e.preventDefault()
+    function handleLogIn(e) {
+        console.log(e)
+        // e.preventDefault()
         fetch('/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(
-                {
-                    username: loginUser,
-                    password: loginPassword
-                }
-            )
+            body: JSON.stringify(e)
         })
             .then(r => {
                 if (r.ok) {
@@ -40,8 +36,8 @@ function Login({ setIsLoggedIn, setUserId }) {
                 else {
                     const userId = data.id
                     setUserId(userId)
-                    setLoginPassword("")
-                    setLoginUser("")
+                    // setLoginPassword("")
+                    // setLoginUser("")
                     navigate(`/user/${userId}`)
                     setIsLoggedIn(true)
                 }
@@ -50,8 +46,7 @@ function Login({ setIsLoggedIn, setUserId }) {
 
     let loginSchema = yup.object().shape({
         username: yup.string().required(),
-        password: yup.string().required(),
-        password_confirmation: yup.string().oneOf([yup.ref('password')], 'Passwords must match').required()
+        password: yup.string().required()
     })
 
     // return (
@@ -86,9 +81,9 @@ function Login({ setIsLoggedIn, setUserId }) {
                     password: '',
                 }}
                 validationSchema={loginSchema}
-                onSubmit={logIn}>
+                onSubmit={handleLogIn}>
                 {(props) => {
-                    const { values: { username, password, }, handleChange, handleSubmit, errors } = props
+                    const { values: { username, password }, handleChange, handleSubmit, errors } = props
                     return (
                         <form className="loginSignupEditForm" onSubmit={handleSubmit}>
                             <div><label htmlFor="username">Username: </label>

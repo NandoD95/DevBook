@@ -36,7 +36,7 @@ function App() {
         <Route path="/" element={<Redirect isLoggedIn={isLoggedIn} userId={userId} />} />
         <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId}/>}></Route>
         <Route path='/signup' element={<SignUp setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
-        <Route path='/users/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} setUserId={setUserId} />} />
+        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} setUserId={setUserId} />} />
       </Routes>
     </BrowserRouter>
   );
