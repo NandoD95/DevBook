@@ -14,7 +14,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch('/posts')
+        fetch('/post')
             .then(r => r.json())
             .then(info => {
                 setPosts(info)

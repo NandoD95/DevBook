@@ -64,6 +64,69 @@ class UserById(Resource):
 
 api.add_resource(UserById, "/users/<int:id>")
 
+class Post(Resource):
+    def get(self):
+        posts = [
+            post.to_dict(rules=("-interactions",))
+            for post in Post.query.all()
+        ]
+        return make_response(posts, 200)
+    
+    def post(self):
+        try:
+            new_post = Post(
+                caption=request.get_json()["caption"],
+                image_url=request.get_json()["image_url"],
+                user_id=request.get_json()["user_id"],
+            )
+            db.session.add(new_post)
+            db.session.commit()
+
+            return make_response(new_post.to_dict(), 201)
+        except ValueError:
+            return make_response({"errors": ["validation errors"]}, 400)
+
+
+api.add_resource(Post, "/post")
+
+
+class PostById(Resource):
+    def get(self, id):
+        post = Post.query.filter_by(id=id).one_or_none()
+
+        if post is not None:
+            return make_response(post.to_dict(), 200)
+        else:
+            return make_response({"error": "Post not found"}, 404)
+
+    def delete(self, id):
+        post = Post.query.filter_by(id=id).one_or_none()
+
+        if post is None:
+            return make_response({"error": "Post not found"}, 404)
+
+        db.session.delete(post)
+        db.session.commit()
+        return make_response({}, 204)
+    
+    def patch(self, id):
+        post = Post.query.filter_by(id=id).one_or_none()
+
+        if post is None:
+            return make_response({"error": "Post not found"}, 404)
+        
+        data = request.get_json()
+        if 'caption' in data:
+            post.caption = data['caption']
+        if 'image_url' in data:
+            post.image_url = data['image_url']
+        
+        db.session.commit()
+        return make_response(post.to_dict(), 200)
+
+
+api.add_resource(PostById, "/post/<int:id>")
+
 class CheckSession(Resource):
     def get(self):
         user_id = session.get('user_id')
