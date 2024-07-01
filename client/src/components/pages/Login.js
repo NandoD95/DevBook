@@ -1,12 +1,13 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik"
 import * as yup from "yup";
+import '../pagesStyle/Login.css'
 
 function Login({ setIsLoggedIn, setUserId }) {
 
-    const [loginUser, setLoginUser] = useState("")
-    const [loginPassword, setLoginPassword] = useState("")
+    // const [loginUser, setLoginUser] = useState("")
+    // const [loginPassword, setLoginPassword] = useState("")
 
     const navigate = useNavigate()
 
@@ -83,16 +84,20 @@ function Login({ setIsLoggedIn, setUserId }) {
                 validationSchema={loginSchema}
                 onSubmit={handleLogIn}>
                 {(props) => {
-                    const { values: { username, password }, handleChange, handleSubmit, errors } = props
+                    const { values: { username, password }, handleChange, handleSubmit, errors, touched } = props
                     return (
                         <form className="loginSignupEditForm" onSubmit={handleSubmit}>
                             <div><label htmlFor="username">Username: </label>
                             <input id="username" onChange={handleChange} value={username}
                                 type="text" name="username" /></div>
 
-                            <div><label htmlFor="password">Password: </label>
-                            <input id="password" onChange={handleChange} value={password}
-                                type="text" name="password" /></div>
+                            <div>
+                                <label htmlFor="password">Password: </label>
+                                <input id="password" onChange={handleChange} value={password}
+                                    type="text" name="password" />
+                                {errors.password && touched.password &&
+                                    <div className="error">{errors.password}</div>}
+                            </div>
 
                             <button type="submit">Login</button>
                         </form>

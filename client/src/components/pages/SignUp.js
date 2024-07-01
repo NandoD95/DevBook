@@ -1,20 +1,21 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Link } from "react-router-dom";
+import '../pagesStyle/Signup.css'
 
 function SignUp({ setIsLoggedIn, setUserId }) {
 
     const navigate = useNavigate()
-    const [error, setError] = useState("")
+    // const [error, setError] = useState("")
 
-    const [fullName, setFullName] = useState("")
-    const [userName, setUserName] = useState("")
-    const [userEmail, setUserEmail] = useState("")
-    const [userPassword, setUserPassword] = useState("")
-    const [checkPassword, setCheckPassword] = useState("")
-    const [incorrectPassword, setIncorrectPassword] = useState(true)
+    // const [fullName, setFullName] = useState("")
+    // const [userName, setUserName] = useState("")
+    // const [userEmail, setUserEmail] = useState("")
+    // const [userPassword, setUserPassword] = useState("")
+    // const [checkPassword, setCheckPassword] = useState("")
+    // const [incorrectPassword, setIncorrectPassword] = useState(true)
 
     function createdNewUser(e) {
         // e.preventDefault()
@@ -109,8 +110,8 @@ function SignUp({ setIsLoggedIn, setUserId }) {
 
     return (
         <>
-        <div className="">
-            <h1 className="">DevBook</h1>
+        <div className="signup-container">
+            <h1 className="signup-header">DevBook</h1>
             <Formik
                 initialValues={{
                     name: '',
@@ -133,29 +134,29 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                     },
                         handleChange, handleSubmit, errors } = props
                     return (<form className="signup-form" onSubmit={handleSubmit}>
-                        <p>*required fields</p>
+                        <p>* Required Fields</p>
 
-                        <label>*Name: </label>
+                        <label htmlFor="name">* Name: </label>
                         <input onChange={handleChange} value={name}
                             type="text" name="name" />
                         <p className="errorText">{errors.name}</p>
 
-                        <label>*Email Address: </label>
+                        <label htmlFor="email">* Email Address: </label>
                         <input onChange={handleChange} value={email}
                             type="email" name="email" />
                         <p className="errorText">{errors.email}</p>
 
-                        <label>*Username: </label>
+                        <label htmlFor="username">* Username: </label>
                         <input onChange={handleChange} value={username}
                             type="text" name="username" />
                         <p className="errorText">{errors.username}</p>
 
-                        <label>*Password: </label>
+                        <label htmlFor="password">* Password: </label>
                         <input onChange={handleChange} value={password}
                             type="text" name="password" />
                         <p className="errorText">{errors.password}</p>
 
-                        <label>*Confirm Password: </label>
+                        <label htmlFor="password_confirmation">* Confirm Password: </label>
                         <input onChange={handleChange} value={password_confirmation}
                             type="text" name="password_confirmation" />
                         <p className="errorText">{errors.password_confirmation}</p>
@@ -171,7 +172,7 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                     </form>)
                 }}
             </Formik>
-            <div>
+            <div className="login-link">
                 <p>Already have an account? <Link to="/login">Log In</Link></p>
             </div>
 
