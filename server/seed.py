@@ -44,13 +44,15 @@ if __name__ == '__main__':
         u1posts = Post(
             content = "this is my first post",
             user_id = u1.id,
-            language_used = "React"
+            language_used = "React",
+            image_url = "youtube.com"
         )
 
         u2posts = Post(
             content = "this is my second post",
             user_id = u2.id,
-            language_used = "Python"
+            language_used = "Python",
+            image_url = "youtube.com"
         )
         
         db.session.add_all([u1posts, u2posts])

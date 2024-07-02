@@ -60,6 +60,7 @@ class Post(db.Model, SerializerMixin):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.String, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     language_used = db.Column(db.String, nullable=True)
     created_at = db.Column(db.DateTime, server_default=func.now())
@@ -67,13 +68,13 @@ class Post(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='posts')
     serialize_rules = ('-user.posts')
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'content': self.content
-            # Add more attributes as needed
-        }
+    # def to_dict(self):
+    #     return {
+    #         'id': self.id,
+    #         'title': self.title,
+    #         'content': self.content
+    #         # Add more attributes as needed
+    #     }
 
     @validates('content')
     def validate_content(self, key, content):

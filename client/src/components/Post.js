@@ -13,7 +13,7 @@ function Post({ post, username, userId }) {
             .then(r => r.json())
             .then(data => {
                 setInteraction(data['interactions']);
-                const index = data['interactions'].length - 1
+                const index = data['interactions'].length - 1;
                 const currentLike = data['interactions'][index]?.like;
                 setLike(currentLike);
             })
@@ -25,47 +25,47 @@ function Post({ post, username, userId }) {
         showComment((prevcom) => !prevcom);
     }
 
-    function updateLike() {
-        setLike((prevLike) => !prevLike);
-        const interactionId = interaction[number]?.id;
-        fetch(`/interactions/${interactionId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(
-                {
-                    like: !like,
-                    user_id: userId,
-                    post_id: post.id
-                }
-            )
-        })
-    }
+    // function updateLike() {
+    //     setLike((prevLike) => !prevLike);
+    //     const interactionId = interaction[number]?.id;
+    //     fetch(`/interactions/${interactionId}`, {
+    //         method: "PATCH",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(
+    //             {
+    //                 like: !like,
+    //                 user_id: userId,
+    //                 post_id: post.id
+    //             }
+    //         )
+    //     })
+    // }
 
-    function addComment(e) {
-        e.preventDefault()
-        fetch('/interactions', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(
-                {
-                    comment: commentText,
-                    like: like,
-                    user_id: userId,
-                    post_id: post.id,
-                }
-            )
-        })
-            .then(r => r.json())
-            .then(newComment => {
-                setInteraction(prevInteraction => [...prevInteraction, newComment]);
-                setCommentText("");
-            })
-            .catch(error => console.error('Error adding comment:', error));
-    }
+    // function addComment(e) {
+    //     e.preventDefault()
+    //     fetch('/interactions', {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(
+    //             {
+    //                 comment: commentText,
+    //                 like: like,
+    //                 user_id: userId,
+    //                 post_id: post.id,
+    //             }
+    //         )
+    //     })
+    //         .then(r => r.json())
+    //         .then(newComment => {
+    //             setInteraction(prevInteraction => [...prevInteraction, newComment]);
+    //             setCommentText("");
+    //         })
+    //         .catch(error => console.error('Error adding comment:', error));
+    // }
 
     const comments = interaction.map(comment => {
         return <p key={comment.id} className="">{comment.user.username}: {comment.comment}</p>
