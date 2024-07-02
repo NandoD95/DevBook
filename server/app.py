@@ -64,7 +64,7 @@ class UserById(Resource):
 
 api.add_resource(UserById, "/users/<int:id>")
 
-class Post(Resource):
+class Posts(Resource):
     def get(self):
         posts = [
             post.to_dict(rules=("-interactions",))
@@ -79,7 +79,6 @@ class Post(Resource):
                 image_url=request.get_json()["image_url"],
                 user_id=request.get_json()["user_id"],
                 language_used=request.get_json()["language_used"],
-                created_at=request.get_json()["created_at"]
             )
             db.session.add(new_post)
             db.session.commit()
@@ -89,7 +88,7 @@ class Post(Resource):
             return make_response({"errors": ["validation errors"]}, 400)
 
 
-api.add_resource(Post, "/post")
+api.add_resource(Posts, "/post")
 
 
 class PostById(Resource):
@@ -118,8 +117,8 @@ class PostById(Resource):
             return make_response({"error": "Post not found"}, 404)
         
         data = request.get_json()
-        if 'caption' in data:
-            post.caption = data['caption']
+        if 'content' in data:
+            post.caption = data['content']
         if 'image_url' in data:
             post.image_url = data['image_url']
         

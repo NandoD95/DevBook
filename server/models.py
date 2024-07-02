@@ -66,7 +66,7 @@ class Post(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=func.now())
 
     user = db.relationship('User', back_populates='posts')
-    serialize_rules = ('-user.posts')
+    serialize_rules = ('-user.posts',)
 
     # def to_dict(self):
     #     return {
