@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import "./Style/postForm.css"
+import { Formik } from "formik"
+import * as yup from "yup";
 
 const PostForm = ({ setNewPost }) => {
   // State variables
@@ -104,4 +106,76 @@ const PostForm = ({ setNewPost }) => {
   );
 };
 
+    // const handleSubmit = async (event) => {
+    //     // event.preventDefault();
+
+    //     fetch('/post', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(event)
+    //     })
+    //             .then(r => {
+    //                 if (r.ok) {
+    //                     return r.json()
+    //                 }
+    //                 else {
+    //                     alert("Something Wrong With Post")
+    //                     return undefined
+    //                 }
+    //             })
+    //             .then(data => {
+    //                 if (data === undefined){
+    //                     alert("Something went wrong. Please try again!")
+    //                 }
+    //                 else {
+    //                     alert("Post Created!")
+    //                 }
+    //             })
+    // }
+    //     let loginSchema = yup.object().shape({
+    //         content: yup.string().requried(),
+    //         image_url: yup.string().not.requried(),
+    //         language_used: yup.string().required()
+    //     })
+
+    //     return (
+    //         <div>
+    //             <Formik
+    //                 initialValues={{
+    //                     content: '',
+    //                     image_url: '',
+    //                     language_used: ''
+    //                 }}
+    //                 validationSchema={loginSchema}
+    //                 onSubmit={handleSubmit}>
+    
+    //                 {(props) => {
+    //                     const { values: {content, image_url, language_used}, handleChange, handleSubmit, errors, touched} = props
+    //                     return (
+    //                         <form onSubmit={handleSubmit}>
+    //                             <div>
+    //                                 <label htmlFor="content">Content</label>
+    //                                 <input type="text" name="content" value={content} onChange={handleChange} />
+    //                                 {errors.content && touched.content && <div>{errors.content}</div>}
+    //                             </div>
+    //                             <div>
+    //                                 <label htmlFor="image_url">Image URL</label>
+    //                                 <input type="text" name="image_url" value={image_url} onChange={handleChange} />
+    //                                 {errors.image_url && touched.image_url && <div>{errors.image_url}</div>}
+    //                             </div>
+    //                             <div>
+    //                                 <label htmlFor="language_used">Language Used</label>
+    //                                 <input type="text" name="language_used" value={language_used} onChange={handleChange
+    //                                 } />
+    //                                 {errors.language_used && touched.language_used && <div>{errors.language_used}</div>}
+    //                             </div>
+    //                         </form>
+    //                     )   
+    //                 }}
+    //             </Formik>
+    //         </div>
+    //     )
+// }
 export default PostForm;
