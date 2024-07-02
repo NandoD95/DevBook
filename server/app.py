@@ -128,6 +128,38 @@ class PostById(Resource):
 
 api.add_resource(PostById, "/post/<int:id>")
 
+class Projects(Resource):
+    def get(self, id):
+        project = Project.query.filter_by(id=id).one_or_none()
+        if project is not None:
+            return make_response(project.to_dict(), 200)
+        else:
+            return make_response({"error": "Project not found"}, 404)
+
+    def post(self):
+        data = request.get_json()
+        project = Project(
+            name=data['name'],
+            description=data['description'],
+            image_url=data['image_url'],
+            user_id=data['user_id']
+        )
+        db.session.add(project)
+        db.session.commit()
+        return make_response(project.to_dict(), 201)
+
+api.add_resource(Projects, "/project")
+
+class Favorites(Resource):
+    def get(self, id):
+        favorite = Favorite.query.filter_by(id=id).one_or_none()
+        if favorite is not None:
+            return make_response(favorite.to_dict(), 200)
+        else:
+            return make_response({"error": "Favorite not found"}, 404)
+
+api.add_resource(Favorites, "/favorites")
+
 class CheckSession(Resource):
     def get(self):
         user_id = session.get('user_id')
