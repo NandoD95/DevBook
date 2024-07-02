@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Link } from "react-router-dom";
-import '../pagesStyle/Signup.css'
+import '../Style/Signup.css'
 
 function SignUp({ setIsLoggedIn, setUserId }) {
 

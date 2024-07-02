@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik"
 import * as yup from "yup";
-import '../pagesStyle/Login.css'
+import '../Style/Login.css'
 
 function Login({ setIsLoggedIn, setUserId }) {
 

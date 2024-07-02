@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './Style/search.css'
 
 function Search({ otherUser }) {
     const [inputValue, setInputValue] = useState("");
@@ -25,9 +26,9 @@ function Search({ otherUser }) {
     };
 
     return (
-        <div className="">
+        <div className="search-container">
             <input
-                className=""
+                className="search-input"
                 id="search"
                 autoComplete="off"
                 placeholder="Search 🔎"
@@ -35,11 +36,11 @@ function Search({ otherUser }) {
                 onChange={handleChange}
             />
             {showSuggestions && (
-                <ul className="">
+                <ul className="suggestions-list">
                     {suggestions.map((suggestion, index) => (
                         <li
                             key={index}
-                            className=""
+                            className="suggestions-item"
                             onClick={() => handleSelectSuggestion(suggestion)}
                         >
                             {suggestion}
