@@ -1,0 +1,52 @@
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure the Navbar is above other content */
+}
+
+/* Matrix Effect Styles */
+.matrix-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.matrix-text {
+    font-size: 6rem; /* Adjust size as needed */
+    color: transparent;
+    position: relative;
+    animation: pixelate 1.5s steps(10) forwards, fade-in 2s ease-in-out 1.5s forwards;
+    text-shadow: 0 0 5px rgba(15, 240, 15, 0.8);
+}
+
+@keyframes pixelate {
+    0% {
+        filter: blur(10px);
+        opacity: 0;
+    }
+    100% {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+

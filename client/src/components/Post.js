@@ -20,10 +20,10 @@ function Post({ post, username, userId }) {
             .catch(error => console.error('Error fetching interactions:', error));
     }, [post.id]);
 
-    function showComments(e) {
-        e.preventDefault();
-        showComment((prevcom) => !prevcom);
-    }
+    // function showComments(e) {
+    //     e.preventDefault();
+    //     showComment((prevcom) => !prevcom);
+    // }
 
     // function updateLike() {
     //     setLike((prevLike) => !prevLike);
@@ -78,21 +78,21 @@ function Post({ post, username, userId }) {
                     <h2 className="">{username}</h2>
                 </div>
                 <img src={post.image_url} />
-                <div className="">
+                {/* <div className="">
                     {like
                         ? <img className="" src="get a heart liked photo here" onClick={() => updateLike()} />
                         : <img className="" src="get a unheart like photo here" onClick={() => updateLike()} />
                     }
                     <img className="" src="get a section for comments" onClick={(e) => showComments(e)} />
-                </div>
+                </div> */}
                 <p className="">{post.caption}</p>
                 {comment
                     ? <></>
                     : <div className="">{comments}</div>
                 }
-                <form onSubmit={(e) => addComment(e)}>
+                {/* <form onSubmit={(e) => addComment(e)}>
                     <input className="" id="comment" placeholder="Add Comment" onChange={(e) => setCommentText(e.target.value)} />
-                </form>
+                </form> */}
             </div>
         </div>
     );

@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "../navbar";
+import "../Style/home.css"
 
 function Home (){
     return(
-        <div>
+        <div className="matrix-container">
             <Navbar/>
-            <h1>Home</h1>
+            <h1 className="matrix-text">Welcome To Dev Book</h1>
         </div>
     )
 }
