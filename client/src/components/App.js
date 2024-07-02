@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from "./pages/Login";
 import Redirect from "./Redirect";
-import SignUp from "./pages/SignUp"
-import User from "./pages/User"
+import SignUp from "./pages/SignUp";
+import User from "./pages/User";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
+import MyProfile from "./pages/MyProfile"
 
 function App() {
 
@@ -37,6 +40,9 @@ function App() {
         <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId}/>}></Route>
         <Route path='/signup' element={<SignUp setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
         <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} setUserId={setUserId} />} />
+        <Route path='/home' element= {<Home /> } />
+        <Route path='/favorites' element= {<Favorites /> } />
+        <Route path='/myprofile' element= {<MyProfile /> } />
       </Routes>
     </BrowserRouter>
   );

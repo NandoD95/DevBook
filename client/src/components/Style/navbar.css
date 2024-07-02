@@ -1,0 +1,21 @@
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    background-color: #f0f2f5; /* Light blue background */
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Light border at the bottom */
+  }
+  
+  .nav-link {
+    color: #1877f2; /* Facebook blue */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #0056b3; /* Darker blue on hover */
+  }
+  
