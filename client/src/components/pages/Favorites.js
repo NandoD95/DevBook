@@ -2,6 +2,10 @@ import React from "react";
 import Navbar from "../navbar";
 
 function Favorites (){
+
+    
+
+
     return(
         <div>
             <Navbar/>

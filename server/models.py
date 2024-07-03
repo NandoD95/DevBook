@@ -105,7 +105,7 @@ class Project(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates='projects')
     favorites = db.relationship('Favorite', back_populates='projects')
-    serialize_rules = ('-user.projects')
+    serialize_rules = ('-user.projects',)
 
     # Example of accessing projects related to a user:
     # user = User.query.get(user_id)  # Assuming user_id is known
@@ -148,8 +148,6 @@ class Project(db.Model, SerializerMixin):
         elif len(link) > 100:
             raise ValueError('Link cannot be longer than 100 characters')
         return link
-
-
 
 class Favorite(db.Model, SerializerMixin):
     __tablename__ = 'favorites'

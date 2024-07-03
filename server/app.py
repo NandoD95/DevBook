@@ -76,7 +76,7 @@ class Posts(Resource):
             new_post = Post(
                 content=request.get_json()["content"],
                 image_url=request.get_json()["image_url"],
-                user_id=request.get_json()["user_id"],
+                user_id=session["user_id"],
                 language_used=request.get_json()["language_used"],
             )
             db.session.add(new_post)
@@ -140,14 +140,14 @@ class Projects(Resource):
         project = Project(
             name=data['name'],
             description=data['description'],
-            image_url=data['image_url'],
+            link=data['link'],
             user_id=data['user_id']
         )
         db.session.add(project)
         db.session.commit()
         return make_response(project.to_dict(), 201)
 
-api.add_resource(Projects, "/project")
+api.add_resource(Projects, "/projects")
 
 class Favorites(Resource):
     def get(self, id):
@@ -156,6 +156,16 @@ class Favorites(Resource):
             return make_response(favorite.to_dict(), 200)
         else:
             return make_response({"error": "Favorite not found"}, 404)
+
+    def post(self):
+        data = request.get_json()
+        favorite = Favorite(
+            post_id=data['post_id'],
+            user_id=data['user_id']
+        )
+        db.session.add(favorite)
+        db.session.commit()
+        return make_response(favorite.to_dict(), 201)
 
 api.add_resource(Favorites, "/favorites")
 

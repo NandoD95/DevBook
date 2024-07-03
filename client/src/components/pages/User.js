@@ -4,6 +4,7 @@ import Post from "../Post"
 import Search from "../Search"
 import PostForm from "../PostForm"
 import Navbar from "../navbar"
+import ProjectFrom from "../ProjectForm"
 
 function User({ setIsLoggedIn, userId, setUserId }) {
 
@@ -23,8 +24,10 @@ function User({ setIsLoggedIn, userId, setUserId }) {
         fetch('/users')
             .then(r => r.json())
             .then(users => {
+                // filtering out the current user & setting user data
                 const filteredUsers = users.filter(user => user.id !== userId)
                 const currentUser = users.filter(user => user.id === userId)
+                // setting user data & other users
                 currentUser.map(user => {
                     setUserData(user)
                 })
@@ -64,6 +67,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                     <h3 className="">Posts: {post.length}</h3>
                 </div>
             </div>
+            <ProjectFrom userId={userId} />
             {postCard}
             {newPost && <Post post={newPost} username={userData.username} />}
         </>
