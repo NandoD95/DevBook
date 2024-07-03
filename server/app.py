@@ -67,8 +67,7 @@ api.add_resource(UserById, "/users/<int:id>")
 class Posts(Resource):
     def get(self):
         posts = [
-            post.to_dict(rules=("-interactions",))
-            for post in Post.query.all()
+            post.to_dict() for post in Post.query.all()
         ]
         return make_response(posts, 200)
     
@@ -118,7 +117,7 @@ class PostById(Resource):
         
         data = request.get_json()
         if 'content' in data:
-            post.caption = data['content']
+            post.content = data['content']
         if 'image_url' in data:
             post.image_url = data['image_url']
         

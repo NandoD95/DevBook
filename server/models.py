@@ -68,13 +68,14 @@ class Post(db.Model, SerializerMixin):
     user = db.relationship('User', back_populates='posts')
     serialize_rules = ('-user.posts',)
 
-    # def to_dict(self):
-    #     return {
-    #         'id': self.id,
-    #         'title': self.title,
-    #         'content': self.content
-    #         # Add more attributes as needed
-    #     }
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'content': self.content,
+            'image_url': self.image_url,
+            'user_id': self.user_id,
+            'language_used': self.language_used
+        }
 
     @validates('content')
     def validate_content(self, key, content):
@@ -120,8 +121,8 @@ class Project(db.Model, SerializerMixin):
             'id': self.id,
             'name': self.name,
             'description': self.description,
+            'link': self.link,
             'user_id': self.user_id
-            # Add more attributes as needed
         }
 
     @validates

@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import "./Style/postForm.css"
 import { Formik } from "formik"
 import * as yup from "yup";
 
-const PostForm = ({ setNewPost }) => {
+const PostForm = ({ setNewPost, user_id }) => {
   // State variables
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(null);
-  const [imageURL, setImageURL] = useState('');
-  const [submittedData, setSubmittedData] = useState(null);
+//   const [content, setContent] = useState('');
+//   const [image, setImage] = useState(null);
+//   const [imageURL, setImageURL] = useState('');
+//   const [submittedData, setSubmittedData] = useState(null);
 
   // Event handlers
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
-  };
+//   const handleContentChange = (event) => {
+//     setContent(event.target.value);
+//   };
 
-  const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
-    setImage(selectedImage);
-    setImageURL(URL.createObjectURL(selectedImage)); // Create temporary URL
-  };
+//   const handleImageChange = (event) => {
+//     const selectedImage = event.target.files[0];
+//     setImage(selectedImage);
+//     setImageURL(URL.createObjectURL(selectedImage)); // Create temporary URL
+//   };
 
 //   const handleSubmit = async (event) => {
 //     event.preventDefault();
@@ -55,67 +55,20 @@ const PostForm = ({ setNewPost }) => {
 //     }
 //   };
 
-//   return (
-//     <div className="post-form-container">
-//       <div className="">
-//         <form onSubmit={handleSubmit} className="post-form">
-//           <div className='form-group'>
-//             <label htmlFor="caption" className="form-label">
-//               What's on your mind?
-//             </label>
-//             <input
-//               type="text"
-//               id="caption"
-//               value={content}
-//               onChange={handleCaptionChange}
-//               placeholder="Write a thought..."
-//               className="form-control"
-//               rows="3"
-//             />
-//           </div>
-//           <div className='form-group'>
-//             <label htmlFor="image" className="form-label">
-//               Add a Photo
-//             </label>
-//             <input
-//               type="file"
-//               id="image"
-//               accept="image/*"
-//               onChange={handleImageChange}
-//               className="form-control-file"
-//             />
-//             {imageURL && (
-//               <img
-//                 src={imageURL}
-//                 alt="Selected"
-//                 className="selected image"
-//               />
-//             )}
-//           </div>
-//           <div className='button-group'>
-//             <button
-//                 type="submit"
-//                 className="btn btn-primary"
-//             >
-//                 Share
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
     const handleSubmit = async (event) => {
         // event.preventDefault();
-        // event.user_id = 1
-
+        
         fetch('/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(event)
+                body: JSON.stringify({
+                    content: event.content,
+                    image_url: event.image_url,
+                    user_id: user_id,
+                    language_used: event.language_used
+                })
         })
                 .then(r => {
                     if (r.ok) {
@@ -142,43 +95,88 @@ const PostForm = ({ setNewPost }) => {
         })
 
         return (
-            <div>
-                <Formik
-                    initialValues={{
-                        content: '',
-                        image_url: '',
-                        language_used: ''
-                    }}
-                    validationSchema={loginSchema}
-                    onSubmit={handleSubmit}>
-    
-                    {(props) => {
-                        const { values: {content, image_url, language_used}, handleChange, handleSubmit, errors, touched} = props
-                        return (
-                            <form onSubmit={handleSubmit}>
-                                <div>
-                                    <label htmlFor="content">Content</label>
-                                    <input type="text" name="content" value={content} onChange={handleChange} />
-                                    {errors.content && touched.content && <div>{errors.content}</div>}
-                                </div>
-                                <div>
-                                    <label htmlFor="image_url">Image URL</label>
-                                    <input type="text" name="image_url" value={image_url} onChange={handleChange} />
-                                    {errors.image_url && touched.image_url && <div>{errors.image_url}</div>}
-                                </div>
-                                <div>
-                                    <label htmlFor="language_used">Language Used</label>
-                                    <input type="text" name="language_used" value={language_used} onChange={handleChange} />
-                                    {errors.language_used && touched.language_used && <div>{errors.language_used}</div>}
-                                </div>
-                                <div>
-                                    <button type="submit">Submit</button>
-                                </div>
-                            </form>
-                        )   
-                    }}
-                </Formik>
+            <div className="post-form-container">
+              <Formik
+                initialValues={{
+                  content: '',
+                  image_url: '',
+                  language_used: '',
+                }}
+                validationSchema={loginSchema}
+                onSubmit={handleSubmit}
+              >
+                {(props) => {
+                  const {
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleSubmit,
+                    isSubmitting,
+                  } = props;
+        
+                  return (
+                    <form onSubmit={handleSubmit} className="post-form">
+                      <div className="form-group">
+                        <textarea
+                          name="content"
+                          placeholder="What's on your mind?"
+                          value={values.content}
+                          onChange={handleChange}
+                          className={`form-control ${
+                            touched.content && errors.content ? 'is-invalid' : ''
+                          }`}
+                        />
+                        {touched.content && errors.content && (
+                          <div className="invalid-feedback">{errors.content}</div>
+                        )}
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="image_url"
+                          placeholder="Enter Image URL (optional)"
+                          value={values.image_url}
+                          onChange={handleChange}
+                          className={`form-control ${
+                            touched.image_url && errors.image_url ? 'is-invalid' : ''
+                          }`}
+                        />
+                        {touched.image_url && errors.image_url && (
+                          <div className="invalid-feedback">{errors.image_url}</div>
+                        )}
+                      </div>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          name="language_used"
+                          placeholder="Language Used"
+                          value={values.language_used}
+                          onChange={handleChange}
+                          className={`form-control ${
+                            touched.language_used && errors.language_used
+                              ? 'is-invalid'
+                              : ''
+                          }`}
+                        />
+                        {touched.language_used && errors.language_used && (
+                          <div className="invalid-feedback">{errors.language_used}</div>
+                        )}
+                      </div>
+                      <div className="form-group">
+                        <button
+                          type="submit"
+                          className="btn btn-primary"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? 'Submitting...' : 'Submit'}
+                        </button>
+                      </div>
+                    </form>
+                  );
+                }}
+              </Formik>
             </div>
-        )
+          );
 }
 export default PostForm;

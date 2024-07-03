@@ -57,7 +57,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                 <Search otherUser={otherUser}/>
                 <button className="" onClick={() => handleLogOut()}>Logout</button>
             </div>
-           <PostForm setNewPost={setNewPost} /> 
+            <PostForm setNewPost={setNewPost} userId={userId}/> 
             <div className="">
                 <div className="">
                     <h2 className="">{userData.username}</h2>
