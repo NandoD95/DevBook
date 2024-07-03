@@ -11,23 +11,77 @@
     z-index: 1000; /* Ensure the Navbar is above other content */
 }
 
-/* Matrix Effect Styles */
+/* Matrix Container Styles */
 .matrix-container {
+    padding-top: 70px; /* Adjusted to account for the fixed navbar */
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #000;
-    overflow: hidden;
+    overflow: auto; /* Changed to 'auto' to allow scrolling */
 }
 
+/* Matrix Text Styles */
 .matrix-text {
-    font-size: 6rem; /* Adjust size as needed */
+    font-size: 6rem;
     color: transparent;
     position: relative;
     animation: pixelate 1.5s steps(10) forwards, fade-in 2s ease-in-out 1.5s forwards;
     text-shadow: 0 0 5px rgba(15, 240, 15, 0.8);
+    text-align: center; /* Center align the text */
+    margin-bottom: 30px; /* Add spacing below the text */
+}
+
+/* About Section Styles */
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #222;
+    color: #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    text-align: justify; /* Justify the text */
+    line-height: 1.6;
+}
+
+.about h2 {
+    color: #0ff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about p {
+    margin-bottom: 20px; /* Add spacing between paragraphs */
+}
+
+.about ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+/* Matrix Text Animation */
+.matrix-text::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(to right, transparent, #0ff, transparent);
+    animation: matrix-loading 3s infinite linear;
+}
+
+@keyframes matrix-loading {
+    0% {
+        background-position: -100%;
+    }
+    100% {
+        background-position: 100%;
+    }
 }
 
 @keyframes pixelate {

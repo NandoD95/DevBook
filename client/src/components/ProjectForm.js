@@ -51,7 +51,7 @@ const ProjectForm = ({userId}) => {
                         name: '',
                         description: '',
                         link: '',
-                        user_id: userId, // Assuming userId is passed as a prop
+                        user_id: userId,
                     }}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
