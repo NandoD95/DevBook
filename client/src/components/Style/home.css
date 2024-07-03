@@ -29,7 +29,7 @@
     color: transparent;
     position: relative;
     animation: pixelate 1.5s steps(10) forwards, fade-in 2s ease-in-out 1.5s forwards;
-    text-shadow: 0 0 5px rgba(15, 240, 15, 0.8);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
     text-align: center; /* Center align the text */
     margin-bottom: 30px; /* Add spacing below the text */
 }
