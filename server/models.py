@@ -21,6 +21,8 @@ class User(db.Model, SerializerMixin):
     projects = db.relationship('Project', back_populates='user')
     favorites = db.relationship('Favorite', back_populates='users')
 
+    serialize_rules = ('-projects.user', '-favorites', '-posts')
+
     
     @property
     def password_hash(self):
