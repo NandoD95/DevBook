@@ -1,0 +1,35 @@
+.post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adjust the gap between posts */
+    max-height: 400px; /* Limit height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px; /* Padding around the container */
+  }
+  
+  .post {
+    background-color: #f0f0f0; /* Background color of each post */
+    padding: 15px; /* Padding inside each post */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+  
+  .post-header {
+    margin-bottom: 10px; /* Margin below the header */
+  }
+  
+  .post-image {
+    max-width: 100%; /* Ensure images don't exceed their container */
+    border-radius: 4px; /* Rounded corners for images */
+  }
+  
+  .post-content {
+    margin-bottom: 10px; /* Margin below the post content */
+  }
+  
+  .post-language {
+    font-style: italic; /* Italicize the language used */
+  }
+  
+  /* Additional styles for form, input, and comments can be added as needed */
+  

@@ -59,6 +59,7 @@ const ProjectForm = ({userId}) => {
                     {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
                         <form onSubmit={handleSubmit} className="project-form">
                             <div className="form-group">
+                                <h1 className="project-form-header">Project Form</h1>
                                 <label htmlFor="name">Name</label>
                                 <input
                                     type="text"
