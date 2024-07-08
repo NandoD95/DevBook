@@ -13,14 +13,14 @@
 
 /* Matrix Container Styles */
 .matrix-container {
-    padding-top: 70px; /* Adjusted to account for the fixed navbar */
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: #000;
-    overflow: auto; /* Changed to 'auto' to allow scrolling */
+    padding-top: 70px; /* Adjusted to account for the fixed navbar */
+    overflow: auto; /* Allow container to scroll if needed */
+    min-height: 100vh; /* Set minimum viewport height */
 }
 
 /* Matrix Text Styles */
@@ -37,7 +37,8 @@
 /* About Section Styles */
 .about {
     max-width: 800px;
-    margin: 0 auto;
+    width: 90%; /* Adjust width as needed */
+    margin: 20px auto; /* Center the about section */
     padding: 20px;
     background-color: #222;
     color: #ddd;
@@ -63,6 +64,26 @@
     list-style-type: disc;
     margin-left: 20px;
     padding-left: 20px;
+}
+
+/* Projects Container Styles */
+.projects-container {
+    width: 90%; /* Adjust width as needed */
+    max-width: 1200px; /* Set a maximum width for the container */
+    margin: 20px auto; /* Center the projects container */
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: auto; /* Allow container to scroll if projects overflow */
+    height: 70vh; /* Set a fixed height for the projects container */
+}
+
+.projects-container h2 {
+    color: #0ff;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 /* Matrix Text Animation */
@@ -103,4 +124,3 @@
         opacity: 1;
     }
 }
-
