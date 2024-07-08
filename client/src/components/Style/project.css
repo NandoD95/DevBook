@@ -1,0 +1,40 @@
+.project-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  
+  .project-description {
+    font-size: 1rem;
+    line-height: 1.4;
+    max-height: 120px; /* Limit height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
+    margin-bottom: 8px;
+  }
+  
+  .project-link {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .project-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .project-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .project-author {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  

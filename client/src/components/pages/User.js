@@ -31,9 +31,9 @@ function User({ setIsLoggedIn, user, setUserId }) {
     // fetch("/users")
     //   .then((r) => r.json())
     //   .then((users) => {
-    //     const filteredUsers = users.filter((user) => user.id !== userId);
-    //     const currentUser = users.find((user) => user.id === userId);
-    //     setUserData(currentUser);
+    //     const filteredUsers = users.filter((user) => user.id !== user);
+    //     const currentUser = users.find((user) => user.id === user);
+    //     setUserId(currentUser);
     //     setOtherUser(filteredUsers);
     //   });
   }, [user?.id]);
@@ -72,8 +72,7 @@ function User({ setIsLoggedIn, user, setUserId }) {
       <PostForm setNewPost={setNewPost} userId={user.id} />
       <div className="">
         <div className="">
-          <h2 className="">{user.username}</h2>
-          <h3 className="">Posts: {postCard.length}</h3>
+          <h1 className="">Posts: {postCard.length}</h1>
         </div>
       </div>
       {postCard}
@@ -81,8 +80,7 @@ function User({ setIsLoggedIn, user, setUserId }) {
       <ProjectFrom userId={user.id} setNewProject={setNewProject} />
       <div className="">
         <div className="">
-            <h2 className="">{user.username}</h2>
-            <h3 className="">Projects: {projectCard.length}</h3>
+            <h1 className="">Projects: {projectCard.length}</h1>
         </div>
       </div>
       {projectCard}
