@@ -1,0 +1,88 @@
+.user-portal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0a192f; /* Dark background color */
+  color: #fff;
+  height: 100vh; /* Full height of the viewport */
+  overflow: auto; /* Allow scrolling if content exceeds viewport */
+}
+
+.header {
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  background-color: #0a192f;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.matrix-text {
+  font-size: 3rem;
+  color: transparent;
+  position: relative;
+  animation: pixelate 1.5s steps(10) forwards, fade-in 2s ease-in-out 1.5s forwards;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #2b394f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: #1d2a3b;
+}
+
+.content {
+  margin-top: 120px; /* Space for the header */
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.posts-section,
+.projects-section {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  background-color: #172a45;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  color: #58a6ff;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+@keyframes pixelate {
+  0% {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

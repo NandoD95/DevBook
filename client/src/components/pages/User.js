@@ -4,8 +4,9 @@ import Post from "../Post";
 import Search from "../Search";
 import PostForm from "../PostForm";
 import Navbar from "../navbar";
-import ProjectFrom from "../ProjectForm";
+import ProjectForm from "../ProjectForm";
 import Project from "../Project";
+import "../Style/user.css"
 
 function User({ setIsLoggedIn, user, setUserId }) {
   const [otherUser, setOtherUser] = useState([]);
@@ -59,34 +60,63 @@ function User({ setIsLoggedIn, user, setUserId }) {
         <Project key={project.id} project={project} userId={user.id} username={user.username} />
     ));
 
-  return (
-    <>
-      <div className="">
-        <Navbar />
-        <h1 className="">DevBook</h1>
-        <Search otherUser={otherUser} />
-        <button className="" onClick={() => handleLogOut()}>
-          Logout
-        </button>
-      </div>
-      <PostForm setNewPost={setNewPost} userId={user.id} />
-      <div className="">
-        <div className="">
-          <h1 className="">Posts: {postCard.length}</h1>
+    return (
+        <div className="user-portal">
+          <div className="header">
+            <h1 className="matrix-text">DevBook</h1>
+            <Navbar />
+            {/* <Search otherUsers={otherUser} /> */}
+            <button className="logout-btn" onClick={handleLogOut}>
+              Logout
+            </button>
+          </div>
+    
+          <div className="content">
+            <div className="posts-section">
+              <h2 className="section-title">Posts ({posts.length})</h2>
+              <PostForm setNewPost={setNewPost} userId={user.id} />
+              {postCard}
+              {newPost && <Post post={newPost} username={user.username} />}
+            </div>
+    
+            <div className="projects-section">
+              <h2 className="section-title">Projects ({projects.length})</h2>
+              <ProjectForm userId={user.id} setNewProject={setNewProject} />
+              {projectCard}
+              {newProject && <Project project={newProject} username={user.username} />}
+            </div>
+          </div>
         </div>
-      </div>
-      {postCard}
-      {newPost && <Post post={newPost} username={user.username} />} {/* Display new post */}
-      <ProjectFrom userId={user.id} setNewProject={setNewProject} />
-      <div className="">
-        <div className="">
-            <h1 className="">Projects: {projectCard.length}</h1>
-        </div>
-      </div>
-      {projectCard}
-      {newProject && <Project project={newProject} username={user.username}/>} 
-    </>
-  );
+      );
+
+//   return (
+//     <>
+//       <div className="user-portal">
+//         <Navbar />
+//         <h1 className="matrix-text">DevBook</h1>
+//         <Search otherUser={otherUser} />
+//         <button className="logout-btn" onClick={() => handleLogOut()}>
+//           Logout
+//         </button>
+//       </div>
+//       <PostForm setNewPost={setNewPost} userId={user.id} />
+//       <div className="">
+//         <div className="">
+//           <h1 className="">Posts: {postCard.length}</h1>
+//         </div>
+//       </div>
+//       {postCard}
+//       {newPost && <Post post={newPost} username={user.username} />} {/* Display new post */}
+//       <ProjectFrom userId={user.id} setNewProject={setNewProject} />
+//       <div className="">
+//         <div className="">
+//             <h1 className="">Projects: {projectCard.length}</h1>
+//         </div>
+//       </div>
+//       {projectCard}
+//       {newProject && <Project project={newProject} username={user.username}/>} 
+//     </>
+//   );
 }
 
 export default User;

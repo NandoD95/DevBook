@@ -1,3 +1,4 @@
+/* Post Container */
 .post-container {
     display: flex;
     flex-direction: column;
@@ -7,11 +8,13 @@
     padding: 20px; /* Padding around the container */
   }
   
+  /* Individual Post Styles */
   .post {
     background-color: #f0f0f0; /* Background color of each post */
     padding: 15px; /* Padding inside each post */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    color: #333; /* Darken the font color for better readability */
   }
   
   .post-header {
@@ -30,6 +33,4 @@
   .post-language {
     font-style: italic; /* Italicize the language used */
   }
-  
-  /* Additional styles for form, input, and comments can be added as needed */
   
