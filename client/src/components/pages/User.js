@@ -5,12 +5,13 @@ import Search from "../Search";
 import PostForm from "../PostForm";
 import Navbar from "../navbar";
 import ProjectFrom from "../ProjectForm";
+import Project from "../Project";
 
 function User({ setIsLoggedIn, userId, setUserId }) {
   const [userData, setUserData] = useState("");
   const [otherUser, setOtherUser] = useState([]);
   const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState(null); // State to hold newly created post
+  const [newPost, setNewPost] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
       .then((info) => {
         setPosts(info);
       });
+
     fetch("/users")
       .then((r) => r.json())
       .then((users) => {
@@ -63,6 +65,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
         </div>
       </div>
       <ProjectFrom userId={userId} />
+      {/* <Project /> */}
       {postCard}
       {newPost && <Post post={newPost} username={userData.username} />} {/* Display new post */}
     </>

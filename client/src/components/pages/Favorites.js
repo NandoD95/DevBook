@@ -1,17 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../navbar";
 
-function Favorites (){
+function Favorites() {
+  const [favorite, setFavorite] = useState(null);
 
-    
+  useEffect(() => {
+    const fetchFavorite = async () => {
+      try {
+        const response = await fetch(`/favorites`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch favorite');
+        }
 
+        const data = await response.json();
+        setFavorite(data); 
 
-    return(
+      } catch (error) {
+        console.error('Error fetching favorite:', error.message);
+      }
+    };
+
+    fetchFavorite();
+  }, []);
+
+  return (
+    <div>
+      <Navbar />
+      <h1>Favorite</h1>
+      {favorite && (
         <div>
-            <Navbar/>
-            <h1>Favorite</h1>
+          <p>Favorite ID: {favorite.id}</p>
+          <p>Post ID: {favorite.post_id}</p>
+          <p>User ID: {favorite.user_id}</p>
         </div>
-    )
+      )}
+    </div>
+  );
 }
 
 export default Favorites;
