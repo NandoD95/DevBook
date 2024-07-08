@@ -159,5 +159,5 @@ class Favorite(db.Model, SerializerMixin):
 
     users = db.relationship('User', back_populates='favorites')
     projects = db.relationship('Project', back_populates='favorites')
-    serialize_rules = ('-users.favorite', '-projects.favorite')
+    serialize_rules = ('-users.favorites', '-projects.favorites')
 

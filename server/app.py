@@ -187,7 +187,7 @@ api.add_resource(ProjectById, "/projects/<int:id>")
 
 class Favorites(Resource):
     def get(self, id):
-        favorite = Favorite.query.filter_by(id=id).one_or_none()
+        favorite = Favorite.query.all()
         # data = request.get_json()
         # favorite = Favorite(
         #     post_id=data['post_id'],
@@ -208,7 +208,7 @@ class Favorites(Resource):
         db.session.commit()
         return make_response(favorite.to_dict(), 201)
 
-api.add_resource(Favorites, "/favorites/<int:id>")
+api.add_resource(Favorites, "/favorites")
 
 class CheckSession(Resource):
     def get(self):
