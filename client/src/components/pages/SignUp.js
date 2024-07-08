@@ -30,7 +30,7 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                 .then(data => { 
                     // console.log(data)
                     const userId = data.id
-                    setUserId(userId)
+                    setUserId(data)
                     // setFullName("")
                     // setUserName("")
                     // setUserEmail("")

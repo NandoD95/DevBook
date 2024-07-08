@@ -128,10 +128,10 @@ class PostById(Resource):
 api.add_resource(PostById, "/post/<int:id>")
 
 class Projects(Resource):
-    def get(self, id):
-        project = Project.query.filter_by(id=id).one_or_none()
-        if project is not None:
-            return make_response(project.to_dict(), 200)
+    def get(self):
+        projects = Project.query.all()
+        if projects is not None:
+            return make_response([project.to_dict()for project in projects], 200)
         else:
             return make_response({"error": "Project not found"}, 404)
 
@@ -148,6 +148,42 @@ class Projects(Resource):
         return make_response(project.to_dict(), 201)
 
 api.add_resource(Projects, "/projects")
+
+class ProjectById(Resource):
+    def get(self, id):
+        project = Project.query.filter_by(id=id).one_or_none()
+        if project is None:
+            return make_response({"error": "Project not found"}, 404)
+            return make_response(project.to_dict(), 200)
+
+    def delete(self, id):
+        project = Project.query.filter_by(id=id).one_or_none()
+        if project is None:
+            return make_response({"error": "Project not found"}, 404)
+        else:
+            db.session.delete(project)
+            db.session.commit()
+            return make_response({"message": "Project deleted"}, 200)
+
+    def patch(self, id):
+        data = request.get_json()
+        project = Project.query.filter_by(id=id).one_or_none()
+        if project is None:
+            return make_response({"error": "Project not found"}, 404)
+
+        if 'name' in data:
+            project.name = data['name']
+        if 'description' in data:
+            project.description = data['description']
+        if 'link' in data:
+            project.link = data['link']
+        
+        db.session.commit()
+        return make_response(project.to_dict(), 200)
+
+api.add_resource(ProjectById, "/projects/<int:id>")
+
+    
 
 class Favorites(Resource):
     def get(self, id):

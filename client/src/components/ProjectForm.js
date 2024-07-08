@@ -2,41 +2,72 @@ import { Formik } from "formik"
 import * as yup from "yup";
 import "./Style/projectForm.css"
 
-const ProjectForm = ({userId}) => {
+const ProjectForm = ({userId, setNewProject}) => {
 
-    const handleSubmit = async (event) => {
-        // event.preventDefault();
-        
-        fetch('/projects', {
-            method: 'POST',
+    const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        try {
+          const response = await fetch("/projects", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: event.name,
-                    description: event.description,
-                    link: event.link,
-                    user_id: event.user_id
-                })
-        })
-                .then(r => {
-                    if (r.ok) {
-                        return r.json()
-                    }
-                    else {
-                        alert("Something Wrong With Project")
-                        return undefined
-                    }
-                })
-                .then(data => {
-                    if (data === undefined){
-                        alert("Please try again!")
-                    }
-                    else {
-                        alert("Project Uploaded!")
-                    }
-                })
-    }
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: values.name,
+              description: values.description,
+              link: values.link,
+              user_id: userId,
+            }),
+          });
+      
+          if (!response.ok) {
+            throw new Error("Failed to submit the form");
+          }
+      
+          const responseData = await response.json();
+          setNewProject(responseData); // Update User component with new project data
+          alert("Project Created!");
+          resetForm(); // Reset the form after successful submission
+        } catch (error) {
+          console.error("Error submitting form:", error.message);
+          alert("Something went wrong. Please try again!");
+        } finally {
+          setSubmitting(false);
+        }
+      };
+
+    // const handleSubmit = async (event) => {
+    //     // event.preventDefault();
+        
+    //     fetch('/projects', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 name: event.name,
+    //                 description: event.description,
+    //                 link: event.link,
+    //                 user_id: event.user_id
+    //             })
+    //     })
+    //             .then(r => {
+    //                 if (r.ok) {
+    //                     return r.json()
+    //                 }
+    //                 else {
+    //                     alert("Something Wrong With Project")
+    //                     return undefined
+    //                 }
+    //             })
+    //             .then(data => {
+    //                 if (data === undefined){
+    //                     alert("Please try again!")
+    //                 }
+    //                 else {
+    //                     alert("Project Uploaded!")
+    //                 }
+    //             })
+    // }
 
     let validationSchema = yup.object().shape({
         name: yup.string().required("Name is required"),

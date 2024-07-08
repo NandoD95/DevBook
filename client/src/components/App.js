@@ -11,7 +11,7 @@ import MyProfile from "./pages/MyProfile"
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userId, setUserId] = useState(0)
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     fetch('/check_session')
@@ -25,7 +25,7 @@ function App() {
       })
       .then(data => {
         if (data !== undefined) {
-          setUserId(data['id']);
+          setUser(data);
         }
       })
       .catch(error => {
@@ -36,10 +36,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Redirect isLoggedIn={isLoggedIn} userId={userId} />} />
-        <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId}/>}></Route>
-        <Route path='/signup' element={<SignUp setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
-        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} setUserId={setUserId} />} />
+        <Route path="/" element={<Redirect isLoggedIn={isLoggedIn} userId={user?.id} />} />
+        <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUser}/>}></Route>
+        <Route path='/signup' element={<SignUp setIsLoggedIn={setIsLoggedIn} setUserId={setUser} />} />
+        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} user={user} setUserId={setUser} />} />
         <Route path='/home' element= {<Home /> } />
         <Route path='/favorites' element= {<Favorites /> } />
         <Route path='/myprofile' element= {<MyProfile /> } />

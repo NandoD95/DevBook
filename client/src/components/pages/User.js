@@ -7,11 +7,12 @@ import Navbar from "../navbar";
 import ProjectFrom from "../ProjectForm";
 import Project from "../Project";
 
-function User({ setIsLoggedIn, userId, setUserId }) {
-  const [userData, setUserData] = useState("");
+function User({ setIsLoggedIn, user, setUserId }) {
   const [otherUser, setOtherUser] = useState([]);
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [newProject, setNewProject] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,15 +22,21 @@ function User({ setIsLoggedIn, userId, setUserId }) {
         setPosts(info);
       });
 
-    fetch("/users")
+    fetch ("/projects")
       .then((r) => r.json())
-      .then((users) => {
-        const filteredUsers = users.filter((user) => user.id !== userId);
-        const currentUser = users.find((user) => user.id === userId);
-        setUserData(currentUser);
-        setOtherUser(filteredUsers);
-      });
-  }, [userId]);
+      .then((info) => {
+        setProjects(info);
+      })
+
+    // fetch("/users")
+    //   .then((r) => r.json())
+    //   .then((users) => {
+    //     const filteredUsers = users.filter((user) => user.id !== userId);
+    //     const currentUser = users.find((user) => user.id === userId);
+    //     setUserData(currentUser);
+    //     setOtherUser(filteredUsers);
+    //   });
+  }, [user?.id]);
 
   function handleLogOut() {
     setIsLoggedIn(false);
@@ -41,10 +48,15 @@ function User({ setIsLoggedIn, userId, setUserId }) {
   }
 
   const postCard = posts
-    .filter((post) => post.user_id === userId)
+    .filter((post) => post.user_id === user.id)
     .map((post) => (
-      <Post key={post.id} post={post} userId={userId} username={userData.username} />,
-      console.log(userData.username)
+      <Post key={post.id} post={post} userId={user.id} username={user.username} />
+    ));
+
+  const projectCard = projects
+    .filter((project) => project.user_id === user.id)
+    .map((project) => (
+        <Project key={project.id} project={project} userId={user.id} username={user.username} />
     ));
 
   return (
@@ -57,17 +69,24 @@ function User({ setIsLoggedIn, userId, setUserId }) {
           Logout
         </button>
       </div>
-      <PostForm setNewPost={setNewPost} userId={userId} />
+      <PostForm setNewPost={setNewPost} userId={user.id} />
       <div className="">
         <div className="">
-          <h2 className="">{userData.username}</h2>
+          <h2 className="">{user.username}</h2>
           <h3 className="">Posts: {postCard.length}</h3>
         </div>
       </div>
-      <ProjectFrom userId={userId} />
-      {/* <Project /> */}
       {postCard}
-      {newPost && <Post post={newPost} username={userData.username} />} {/* Display new post */}
+      {newPost && <Post post={newPost} username={user.username} />} {/* Display new post */}
+      <ProjectFrom userId={user.id} setNewProject={setNewProject} />
+      <div className="">
+        <div className="">
+            <h2 className="">{user.username}</h2>
+            <h3 className="">Projects: {projectCard.length}</h3>
+        </div>
+      </div>
+      {projectCard}
+      {newProject && <Project project={newProject} username={user.username}/>} 
     </>
   );
 }

@@ -21,7 +21,7 @@ class User(db.Model, SerializerMixin):
     projects = db.relationship('Project', back_populates='user')
     favorites = db.relationship('Favorite', back_populates='users')
 
-    serialize_rules = ('-projects.user', '-favorites', '-posts')
+    serialize_rules = ('-projects.user', '-favorites', '-posts.user')
 
     
     @property
@@ -107,7 +107,7 @@ class Project(db.Model, SerializerMixin):
 
     user = db.relationship('User', back_populates='projects')
     favorites = db.relationship('Favorite', back_populates='projects')
-    serialize_rules = ('-user.projects',)
+    serialize_rules = ('-user.projects','-favorites')
 
     # Example of accessing projects related to a user:
     # user = User.query.get(user_id)  # Assuming user_id is known
@@ -118,14 +118,14 @@ class Project(db.Model, SerializerMixin):
         # else:
         #     print("User not found")
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'description': self.description,
-            'link': self.link,
-            'user_id': self.user_id
-        }
+    # def to_dict(self):
+    #     return {
+    #         'id': self.id,
+    #         'name': self.name,
+    #         'description': self.description,
+    #         'link': self.link,
+    #         'user_id': self.user_id
+    #     }
 
     @validates
     def validate_name(self, key, name):

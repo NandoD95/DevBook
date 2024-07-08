@@ -8,7 +8,7 @@ function Login({ setIsLoggedIn, setUserId }) {
     const navigate = useNavigate()
 
     function handleLogIn(e) {
-        console.log(e)
+        // console.log(e)
         // e.preventDefault()
         fetch('/login', {
             method: "POST",
@@ -32,7 +32,7 @@ function Login({ setIsLoggedIn, setUserId }) {
                 }
                 else {
                     const userId = data.id
-                    setUserId(userId)
+                    setUserId(data)
                     // setLoginPassword("")
                     // setLoginUser("")
                     navigate(`/user/${userId}`)
