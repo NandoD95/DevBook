@@ -118,10 +118,12 @@ class PostById(Resource):
         data = request.get_json()
         if 'content' in data:
             post.content = data['content']
-        if 'image_url' in data:
-            post.image_url = data['image_url']
-        
-        db.session.commit()
+        # if 'image_url' in data:
+        #     post.image_url = data['image_url']
+        # if 'language_used' in data:
+        #     post.language_used = data['language_used']
+            db.session.add(post)
+            db.session.commit()
         return make_response(post.to_dict(), 200)
 
 
