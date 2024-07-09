@@ -1,45 +1,84 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+// import Navbar from "../navbar";
+
+// function Favorites() {
+//   const [favorite, setFavorite] = useState(null);
+
+//   useEffect(() => {
+//     const fetchFavorite = async () => {
+//       try {
+//         const response = await fetch(`/favorites`, {
+//           method: 'GET',
+//           headers: {
+//             'Content-Type': 'application/json'
+//           }
+//         });
+        
+//         if (!response.ok) {
+//           throw new Error('Failed to fetch favorite');
+//         }
+
+//         const data = await response.json();
+//         setFavorite(data); 
+
+//       } catch (error) {
+//         console.error('Error fetching favorite:', error.message);
+//       }
+//     };
+
+//     fetchFavorite();
+//   }, []);
+
+//   return (
+//     <div>
+//       <Navbar />
+//       <h1>Favorite</h1>
+//       {favorite && (
+//         <div>
+//           <p>Favorite ID: {favorite.id}</p>
+//           <p>Post ID: {favorite.post_id}</p>
+//           <p>User ID: {favorite.user_id}</p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Favorites;
+
+import React, { useState, useEffect } from "react";
 import Navbar from "../navbar";
+import Project from "../Project"; 
 
 function Favorites() {
-  const [favorite, setFavorite] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const fetchFavorite = async () => {
+    const fetchFavorites = async () => {
       try {
-        const response = await fetch(`/favorites`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        
+        const response = await fetch("/favorites");
         if (!response.ok) {
-          throw new Error('Failed to fetch favorite');
+          throw new Error("Failed to fetch favorites");
         }
-
-        const data = await response.json();
-        setFavorite(data); 
-
+        const favoritesData = await response.json();
+        setFavorites(favoritesData);
       } catch (error) {
-        console.error('Error fetching favorite:', error.message);
+        console.error("Error fetching favorites:", error.message);
       }
     };
 
-    fetchFavorite();
+    fetchFavorites();
   }, []);
 
   return (
     <div>
       <Navbar />
-      <h1>Favorite</h1>
-      {favorite && (
-        <div>
-          <p>Favorite ID: {favorite.id}</p>
-          <p>Post ID: {favorite.post_id}</p>
-          <p>User ID: {favorite.user_id}</p>
-        </div>
-      )}
+      <h1>My Favorites</h1>
+      <div className="favorites-container">
+        {favorites.map((favorite) => (
+          <Project key={favorite.id} project={favorite} />
+        ))}
+      </div>
     </div>
   );
 }
