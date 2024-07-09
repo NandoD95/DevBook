@@ -49,9 +49,9 @@ import Project from "../Project";
 import "../Style/home.css";
 import About from "../About";
 
-function Home() {
+function Home({userId}) {
   const [projects, setProjects] = useState([]);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -71,20 +71,24 @@ function Home() {
   }, []);
 
   const handleFavoriteClick = async (project) => {
+    console.log(userId)
     try {
-      const response = await fetch(`/favorites/add`, {
+      const response = await fetch(`/favorites`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(project),
+        body: JSON.stringify({
+            project_id: project.id,
+            user_id: userId
+        }),
       });
 
       if (!response.ok) {
         throw new Error("Failed to add project to favorites");
       }
 
-      navigate.push("/favorites"); // Navigate to favorites page after adding favorite
+      navigate("/favorites");
     } catch (error) {
       console.error("Error adding project to favorites:", error.message);
     }

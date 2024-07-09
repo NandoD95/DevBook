@@ -1,0 +1,74 @@
+/* favorites.css */
+
+.favorites-page {
+    background-color: #f0f0f0; /* Light background color */
+    min-height: 100vh; /* Ensure full viewport height coverage */
+    padding-top: 60px; /* Adjust based on Navbar height */
+  }
+  
+  .favorites-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .favorites-title {
+    font-size: 2.5rem;
+    color: #333; /* Dark text color */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .favorites-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between grid items */
+  }
+  
+  /* Project card styling (similar to previous styles) */
+  .project-card {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-title {
+    font-size: 1.5rem;
+    color: #333; /* Dark text color */
+    margin-bottom: 8px;
+  }
+  
+  .project-description {
+    font-size: 1rem;
+    line-height: 1.4;
+    max-height: 120px; /* Limit height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
+    margin-bottom: 8px;
+  }
+  
+  .project-link {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .project-link a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+  }
+  
+  .project-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .project-author {
+    font-size: 0.9rem;
+    color: #666; /* Lighter text color */
+  }
+  
+  /* Hover effect for project cards */
+  .project-card:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    transition: transform 0.3s ease-in-out;
+  }
+  

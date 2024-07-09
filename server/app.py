@@ -186,22 +186,26 @@ api.add_resource(ProjectById, "/projects/<int:id>")
     
 
 class Favorites(Resource):
-    def get(self, id):
-        favorite = Favorite.query.all()
-        # data = request.get_json()
-        # favorite = Favorite(
-        #     post_id=data['post_id'],
-        #     user_id=data['user_id']
-        # )
-        if favorite is not None:
-            return make_response(favorite.to_dict(), 200)
-        else:
-            return make_response({"error": "Favorite not found"}, 404)
+    def get(self):
+        favorites = [
+            favorite.to_dict() for favorite in Favorite.query.all()
+        ]
+        return make_response(favorites, 200)
+        # favorite = Favorite.query.all()
+        # # data = request.get_json()
+        # # favorite = Favorite(
+        # #     post_id=data['post_id'],
+        # #     user_id=data['user_id']
+        # # )
+        # if favorite is not None:
+        #     return make_response(favorite.to_dict(), 200)
+        # else:
+        #     return make_response({"error": "Favorite not found"}, 404)
 
     def post(self):
         data = request.get_json()
         favorite = Favorite(
-            post_id=data['post_id'],
+            project_id=data['project_id'],
             user_id=data['user_id']
         )
         db.session.add(favorite)

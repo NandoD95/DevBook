@@ -40,7 +40,7 @@ function App() {
         <Route path='/Login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUser}/>}></Route>
         <Route path='/signup' element={<SignUp setIsLoggedIn={setIsLoggedIn} setUserId={setUser} />} />
         <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} user={user} setUserId={setUser} />} />
-        <Route path='/home' element= {<Home /> } />
+        <Route path='/home' element= {<Home userId={user?.id}/> } />
         <Route path='/favorites' element= {<Favorites /> } />
         <Route path='/myprofile' element= {<MyProfile /> } />
       </Routes>

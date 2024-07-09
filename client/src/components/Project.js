@@ -44,7 +44,8 @@ import "./Style/project.css"; //
 
 const Project = ({ project, onFavoriteClick, username }) => {
   const handleFavoriteClick = () => {
-    onFavoriteClick(project); // Pass project data to the parent handler
+    onFavoriteClick(project);
+    console.log(project)
   };
 
   return (

@@ -48,7 +48,8 @@
 
 import React, { useState, useEffect } from "react";
 import Navbar from "../navbar";
-import Project from "../Project"; 
+import Project from "../Project";
+import "../Style/favorites.css"
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -69,15 +70,17 @@ function Favorites() {
 
     fetchFavorites();
   }, []);
-
+  
   return (
-    <div>
+    <div className="favorites-page">
       <Navbar />
-      <h1>My Favorites</h1>
-      <div className="favorites-container">
-        {favorites.map((favorite) => (
-          <Project key={favorite.id} project={favorite} />
-        ))}
+      <div className="favorites-content">
+        <h1 className="matrix-text">My Favorites</h1>
+        <div className="favorites-container">
+            {favorites.map((favorite) => (
+            <Project key={favorite.id} project={favorite.projects} />
+            ))}
+        </div>
       </div>
     </div>
   );
