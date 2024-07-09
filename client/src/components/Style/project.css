@@ -38,3 +38,19 @@
     color: #666;
   }
   
+  .favorite-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+  
+  .favorite-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  

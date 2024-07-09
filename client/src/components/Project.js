@@ -57,7 +57,7 @@ const Project = ({ project, onFavoriteClick, username }) => {
         </a>
       </p>
       <p className="project-author">Created by: {username}</p>
-      <button onClick={handleFavoriteClick}>Favorite</button>
+      <button className="favorite-btn" onClick={handleFavoriteClick}>Favorite</button>
     </div>
   );
 };
