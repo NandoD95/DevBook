@@ -51,7 +51,7 @@ import Navbar from "../navbar";
 import Project from "../Project";
 import "../Style/favorites.css"
 
-function Favorites() {
+function Favorites({user}) {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
