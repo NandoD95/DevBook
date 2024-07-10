@@ -143,7 +143,7 @@ function Post({ post, username, userId }) {
                         onChange={(e) => setEditedContent(e.target.value)}
                     />
                 ) : (
-                    <p className="post-content">{post.content}</p>
+                    <p className="post-content">{}</p>
                 )}
                 <p className="post-language">Language Used: {post.language_used}</p>
                 {/* Display comments section */}
