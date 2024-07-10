@@ -84,7 +84,7 @@ function Post({ post, username, userId }) {
         })
             .then((r) => r.json())
             .then((updatedPost) => {
-                console.log(updatedPost)
+                // console.log(updatedPost)
                 // Update the post content after successful edit
                 // post.content = updatedPost.content;
                 setEditing(false);
@@ -111,10 +111,10 @@ function Post({ post, username, userId }) {
                     <h2>{username}</h2>
                     <div>
                         {/* <button onClick={updateLike}>{like ? "Unlike" : "Like"}</button> */}
-                        { !editing ?
+                        {!editing ?
                             <div>
-                                <button onClick={() => setEditing(!editing)}>Edit</button>
-                                <button onClick={handleDelete}>Delete</button>
+                                <button className="edit-btn"onClick={() => setEditing(!editing)}>Edit</button>
+                                <button className="delete-btn"onClick={handleDelete}>Delete</button>
                                 <p>{editedContent}</p>
                             </div> :
                             <Formik
@@ -143,7 +143,7 @@ function Post({ post, username, userId }) {
                         onChange={(e) => setEditedContent(e.target.value)}
                     />
                 ) : (
-                    <p className="post-content">{}</p>
+                    <p className="post-content">{ }</p>
                 )}
                 <p className="post-language">Language Used: {post.language_used}</p>
                 {/* Display comments section */}
