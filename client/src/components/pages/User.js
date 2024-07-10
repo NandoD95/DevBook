@@ -88,35 +88,6 @@ function User({ setIsLoggedIn, user, setUserId }) {
           </div>
         </div>
       );
-
-//   return (
-//     <>
-//       <div className="user-portal">
-//         <Navbar />
-//         <h1 className="matrix-text">DevBook</h1>
-//         <Search otherUser={otherUser} />
-//         <button className="logout-btn" onClick={() => handleLogOut()}>
-//           Logout
-//         </button>
-//       </div>
-//       <PostForm setNewPost={setNewPost} userId={user.id} />
-//       <div className="">
-//         <div className="">
-//           <h1 className="">Posts: {postCard.length}</h1>
-//         </div>
-//       </div>
-//       {postCard}
-//       {newPost && <Post post={newPost} username={user.username} />} {/* Display new post */}
-//       <ProjectFrom userId={user.id} setNewProject={setNewProject} />
-//       <div className="">
-//         <div className="">
-//             <h1 className="">Projects: {projectCard.length}</h1>
-//         </div>
-//       </div>
-//       {projectCard}
-//       {newProject && <Project project={newProject} username={user.username}/>} 
-//     </>
-//   );
 }
 
 export default User;

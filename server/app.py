@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response, session
+from flask import request, make_response, session, jsonify
 from flask_restful import Resource
 
 # Local imports
@@ -185,6 +185,52 @@ class ProjectById(Resource):
 
 api.add_resource(ProjectById, "/projects/<int:id>")
 
+
+# class Favorites(Resource):
+
+#     def get(self):
+#         # Check if user is authenticated (example using headers and JWT)
+#         auth_header = request.headers.get('Authorization')
+#         if not auth_header:
+#             return make_response(jsonify({"error": "Authorization header missing"}), 401)
+
+#         # Validate the JWT token (example code, adjust as per your auth mechanism)
+#         token = auth_header.split(" ")[1]  # Assuming Bearer token format
+#         # Verify and decode token, retrieve user_id from decoded token
+#         user_id = decode_jwt(token)  # Implement your JWT decoding function
+
+#         if not user_id:
+#             return make_response(jsonify({"error": "Unauthorized"}), 401)
+
+#         # Query favorites for the authenticated user
+#         favorites = [
+#             favorite.to_dict() for favorite in Favorite.query.filter_by(user_id=user_id).all()
+#         ]
+#         return make_response(jsonify(favorites), 200)
+
+#     def post(self):
+#         # Check if user is authenticated (example using headers and JWT)
+#         auth_header = request.headers.get('Authorization')
+#         if not auth_header:
+#             return make_response(jsonify({"error": "Authorization header missing"}), 401)
+
+#         # Validate the JWT token (example code, adjust as per your auth mechanism)
+#         token = auth_header.split(" ")[1]  # Assuming Bearer token format
+#         # Verify and decode token, retrieve user_id from decoded token
+#         user_id = decode_jwt(token)  # Implement your JWT decoding function
+
+#         if not user_id:
+#             return make_response(jsonify({"error": "Unauthorized"}), 401)
+
+#         # Process POST request to add a new favorite
+#         data = request.get_json()
+#         favorite = Favorite(
+#             project_id=data['project_id'],
+#             user_id=user_id
+#         )
+#         db.session.add(favorite)
+#         db.session.commit()
+#         return make_response(jsonify(favorite.to_dict()), 201)
     
 
 class Favorites(Resource):
