@@ -42,7 +42,7 @@ function App() {
         <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} user={user} setUserId={setUser} />} />
         <Route path='/home' element= {<Home userId={user?.id}/> } />
         <Route path='/favorites' element= {<Favorites user={user}/> } />
-        <Route path='/myprofile' element= {<MyProfile /> } />
+        <Route path='/myprofile' element= {<MyProfile id={user?.id}/> } />
       </Routes>
     </BrowserRouter>
   );
