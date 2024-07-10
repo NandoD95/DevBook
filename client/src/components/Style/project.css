@@ -17,6 +17,7 @@
     max-height: 120px; /* Limit height for scrolling */
     overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
     margin-bottom: 8px;
+    color: black
   }
   
   .project-link {

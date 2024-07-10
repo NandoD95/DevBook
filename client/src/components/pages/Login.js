@@ -67,7 +67,7 @@ function Login({ setIsLoggedIn, setUserId }) {
                             <div>
                                 <label htmlFor="password">Password: </label>
                                 <input id="password" onChange={handleChange} value={password}
-                                    type="text" name="password" />
+                                    type="password" name="password" />
                                 {errors.password && touched.password &&
                                     <div className="error">{errors.password}</div>}
                             </div>

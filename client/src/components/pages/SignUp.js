@@ -99,12 +99,12 @@ function SignUp({ setIsLoggedIn, setUserId }) {
 
                         <label htmlFor="password">* Password: </label>
                         <input onChange={handleChange} value={password}
-                            type="text" name="password" />
+                            type="password" name="password" />
                         <p className="errorText">{errors.password}</p>
 
                         <label htmlFor="password_confirmation">* Confirm Password: </label>
                         <input onChange={handleChange} value={password_confirmation}
-                            type="text" name="password_confirmation" />
+                            type="password" name="password_confirmation" />
                         <p className="errorText">{errors.password_confirmation}</p>
 
                         {/* <label>Profile Picture URL: </label>
