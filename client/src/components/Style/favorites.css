@@ -1,5 +1,3 @@
-/* favorites.css */
-
 .favorites-page {
     background-color: #f0f0f0; /* Light background color */
     min-height: 100vh; /* Ensure full viewport height coverage */
@@ -25,7 +23,6 @@
     gap: 20px; /* Space between grid items */
   }
   
-  /* Project card styling (similar to previous styles) */
   .project-card {
     background-color: #ffffff; /* White background */
     padding: 20px;
@@ -53,7 +50,7 @@
   }
   
   .project-link a {
-    color: #007bff; /* Link color */
+    color: #007bff; 
     text-decoration: none;
   }
   
@@ -63,7 +60,7 @@
   
   .project-author {
     font-size: 0.9rem;
-    color: #666; /* Lighter text color */
+    color: #666; 
   }
   
   /* Hover effect for project cards */

@@ -4,8 +4,10 @@ import Project from "../Project";
 import "../Style/favorites.css"
 
 function Favorites({user}) {
+  // state to store favorite projects
   const [favorites, setFavorites] = useState([]);
 
+  // fetch favorite projects on mount and from api
   useEffect(() => {
     const fetchFavorites = async () => {
       try {

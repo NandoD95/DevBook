@@ -4,6 +4,7 @@ import "./Style/projectForm.css"
 
 const ProjectForm = ({userId, setNewProject}) => {
 
+  // handles form submission 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
           const response = await fetch("/projects", {
@@ -69,6 +70,7 @@ const ProjectForm = ({userId, setNewProject}) => {
     //             })
     // }
 
+    // Yup schema form
     let validationSchema = yup.object().shape({
         name: yup.string().required("Name is required"),
         description: yup.string().required("Description is required"),

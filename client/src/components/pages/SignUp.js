@@ -8,6 +8,7 @@ function SignUp({ setIsLoggedIn, setUserId }) {
 
     const navigate = useNavigate()
 
+    // creates a new user and logs them in
     function createdNewUser(e) {
         // e.preventDefault()
         // console.log(e)
@@ -45,6 +46,7 @@ function SignUp({ setIsLoggedIn, setUserId }) {
                 })
     }
 
+    // Yup schema for validating the create user form data
     let createUserSchema = yup.object().shape({
         name: yup.string().max(40, 'First name too Long!').required(),
         username: yup.string().max(20, 'Username too Long!').required(),

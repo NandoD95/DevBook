@@ -1,7 +1,7 @@
 import React from "react";
 import "./Style/about.css";
 
-
+// about info on home page
 const About = () => {
   return (
     <div className="about">

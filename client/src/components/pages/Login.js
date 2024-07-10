@@ -3,6 +3,7 @@ import { Formik } from "formik"
 import * as yup from "yup";
 import '../Style/Login.css'
 
+// handles the user login
 function Login({ setIsLoggedIn, setUserId }) {
 
     const navigate = useNavigate()

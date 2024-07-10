@@ -9,8 +9,9 @@ import Favorites from "./pages/Favorites";
 import MyProfile from "./pages/MyProfile"
 
 function App() {
-
+  // state variable to see if the user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // state variable to store user object
   const [user, setUser] = useState({})
 
   useEffect(() => {

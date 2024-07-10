@@ -1,7 +1,7 @@
 .navbar-container {
     display: flex;
     justify-content: center;
-    background-color: #f0f2f5; /* Light blue background */
+    background-color: #f0f2f5; 
     padding: 10px;
     border-bottom: 1px solid #ddd; /* Light border at the bottom */
   }

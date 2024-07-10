@@ -10,6 +10,7 @@ function Post({ post, username, userId }) {
     const [editing, setEditing] = useState(false);
     const [editedContent, setEditedContent] = useState(post.content)
 
+    // fetches the post interactions from the server and updates the state
     useEffect(() => {
         fetch(`/post/${post.id}`)
             .then((r) => r.json())
@@ -74,6 +75,7 @@ function Post({ post, username, userId }) {
     //   );
 
 
+    // handes the edit button click and toggles the editing state
     const handleEdit = (values) => {
         fetch(`/post/${post.id}`, {
             method: "PATCH",
@@ -93,6 +95,7 @@ function Post({ post, username, userId }) {
             .catch((error) => console.error("Error editing post:", error));
     };
 
+    // handles the delete button click and deletes the post
     const handleDelete = () => {
         fetch(`/post/${post.id}`, {
             method: "DELETE",

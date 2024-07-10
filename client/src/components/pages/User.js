@@ -9,13 +9,18 @@ import Project from "../Project";
 import "../Style/user.css"
 
 function User({ setIsLoggedIn, user, setUserId }) {
+  // state to store other users
   const [otherUser, setOtherUser] = useState([]);
+  // state to store posts and new post
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState(null);
+  // state to store projects and new project
   const [projects, setProjects] = useState([]);
   const [newProject, setNewProject] = useState(null);
+  // navigation function 
   const navigate = useNavigate();
 
+  // fetch post and projects on mount
   useEffect(() => {
     fetch("/post")
       .then((r) => r.json())
@@ -39,6 +44,7 @@ function User({ setIsLoggedIn, user, setUserId }) {
     //   });
   }, [user?.id]);
 
+  // handles logout functionality 
   function handleLogOut() {
     setIsLoggedIn(false);
     setUserId(0);
@@ -48,12 +54,14 @@ function User({ setIsLoggedIn, user, setUserId }) {
     navigate("/login");
   }
 
+  // filters and map posts to display
   const postCard = posts
     .filter((post) => post.user_id === user.id)
     .map((post) => (
       <Post key={post.id} post={post} userId={user.id} username={user.username} />
     ));
 
+  // filters and map projects to display
   const projectCard = projects
     .filter((project) => project.user_id === user.id)
     .map((project) => (

@@ -2,6 +2,7 @@ import React from "react";
 import "./Style/project.css"; // 
 
 const Project = ({ project, onFavoriteClick, username }) => {
+  // to display a project card and handles the favorite click
   const handleFavoriteClick = () => {
     onFavoriteClick(project);
     console.log(project)

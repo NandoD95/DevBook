@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Style/navbar.css"
 
 function Navbar (){
+    // navbar with links to the destination
     return(
         <div className="navbar-container">
                 <Link to="/Home" className="nav-link">

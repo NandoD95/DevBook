@@ -1,5 +1,7 @@
 # DevBook
 
+ Envision a unified platform that brings together developers from across various disciplines, streamlining the diverse experiences currently scattered across multiple applications like GitHub, Medium, LinkedIn groups, and Facebook groups. Our goal is to create a singular hub where developers can seamlessly advance their careers, enhance learning opportunities, and collaborate on transformative projects. By consolidating these resources into one comprehensive application, we aim to foster innovation not just for ourselves but for the broader community, catalyzing a future where collective creativity drives meaningful change.
+
 With DevBook, you can:
 
 - Post and Share Insights: Whether it's a thought-provoking idea or a technical tutorial, your voice matters. Share your knowledge and learn from others in our vibrant community.
@@ -7,7 +9,8 @@ With DevBook, you can:
 - Favorite Projects: Discover inspiring projects from fellow developers and engineers. Bookmark your favorites and curate your personalized "Favorite Page" for quick access and inspiration.
 - Profile Customization: Your profile is your digital identity. Update your skills, showcase your achievements, and connect with like-minded professionals. It's your space to shine.
 
-Overall we are trying to connect all developers on a single platform instead of having 5 differrent applications running at the same time, lets put a all in one application for us to further our career, learning and partnering up on multiple projects
+
+https://medium.com/@fdejesus95/mastering-full-stack-development-tips-and-insights-c82f703cc025
 
 ## Setup
 

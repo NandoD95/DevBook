@@ -4,6 +4,7 @@ import * as yup from "yup";
 import "./Style/postForm.css"
 
 const PostForm = ({ setNewPost, userId }) => {
+  // handles form submission 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await fetch("/post", {
@@ -35,6 +36,7 @@ const PostForm = ({ setNewPost, userId }) => {
     }
   };
 
+  // Yuyp schemaa for form validation
   let loginSchema = yup.object().shape({
     content: yup.string().required(),
     image_url: yup.string().notRequired(),

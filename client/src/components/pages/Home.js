@@ -5,10 +5,14 @@ import Project from "../Project";
 import "../Style/home.css";
 import About from "../About";
 
+// home component that displays a list of projects and allows users to favorite them
 function Home({userId}) {
+  // state variable to store the list of projects
   const [projects, setProjects] = useState([]);
+  // navigation function to redirect to a new route
   const navigate = useNavigate();
 
+  // effect hook to fetch projects from the server when the component mounts
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -26,6 +30,7 @@ function Home({userId}) {
     fetchProjects();
   }, []);
 
+  // handles favorite click event
   const handleFavoriteClick = async (project) => {
     console.log(userId)
     try {
@@ -43,7 +48,7 @@ function Home({userId}) {
       if (!response.ok) {
         throw new Error("Failed to add project to favorites");
       }
-
+      // after you favorite a project, navigates to the favorites page
       navigate("/favorites");
     } catch (error) {
       console.error("Error adding project to favorites:", error.message);

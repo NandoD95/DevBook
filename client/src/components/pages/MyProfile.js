@@ -3,6 +3,7 @@ import Navbar from "../navbar";
 import "../Style/myprofile.css"
 
 function MyProfile({ id }) {
+  // state variables 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,18 +11,22 @@ function MyProfile({ id }) {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
 
+  // handles change to username
   const handleChangeUsername = (e) => {
     setUsername(e.target.value);
   };
 
+  // handles change to email
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
 
+  // handles change to password
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
 
+  // handles submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
